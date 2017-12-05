@@ -21,8 +21,30 @@ func bubbleSort(arr []int) []int {
 	return arr
 }
 
+func quickSort(arr []int) []int {
+	if len(arr) < 2 { return arr }
+	
+	left, right := 0, len(arr) - 1
+	
+	for i := range arr {
+	  if arr[i] < arr[right] {
+		arr[i], arr[left] = arr[left], arr[i]
+		left++
+	  }
+	}
+
+	arr[left], arr[right] = arr[right], arr[left]
+
+	quickSort(arr[:left])
+	quickSort(arr[left + 1:])
+
+	return arr
+}
+
 func main() {
 	arr := []int{ 10, 2, 9, 4, 1, 5, 3, 6, 8, 7 }
-	
+	arr1 := []int{ 10, 2, 9, 4, 1, 5, 3, 6, 8, 7 }
+
 	fmt.Println(bubbleSort(arr))
+	fmt.Println(quickSort(arr1))
 }
